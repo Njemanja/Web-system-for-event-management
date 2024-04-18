@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Izmenične slike i tekst</title>
+    <style>
+        body{
+            background-color: #e2f8e1;
+        }
+        p{
+            font-size: 20px; 
+        }
+        .naslov {
+            font-family: Monotype Corsiva, Times, Serif;
+            background-color: #e4519a;
+            color: #fff;
+            text-align: center;
+            padding: 5px;
+            margin-bottom: 0px;
+            font-size: 90px;
+        }
+
+        .tekst {
+            background-color: rgba(0, 0, 0, 0.5); 
+            color: #fff;
+            padding: 10px;
+            border-radius: 15px;
+            position: absolute;
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%);
+            width: 80%;
+            overflow-wrap: break-word;
+        }
+
+
+        .navbar {
+            background-color: #6bcb69;
+            color: #fff;
+        }
+        a{
+            font-size: 25px;
+            color: #fff; margin-right: 20px;
+        }
+        img{
+            width: 100%; 
+            height: auto;
+            border-radius: 6%; 
+        }
+        .row{
+            padding: 20px;
+        }
+        a:hover{
+            color: #e4519a; 
+        }
+        
+        .navbar-nav {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .navbar-collapse {
+            text-align: center;
+        }
+       
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="naslov">
+        <img src="assets/logo.png" style="height: 170px; width: 190px;">Celebrate Smart <img src="assets/logo.png" style="height: 170px; width: 190px;">
+    </div>
+    <div>
+        <nav class="navbar navbar-expand-md" >
+            <img src="assets/ch.png" style="height: 70px; width: 70px;">
+            <ul class="navbar-nav" style="font-size: 18px; padding: 10px;">
+                <li class="nav-item">
+                    <a class="nav-link"  href="profil" >Profil</a>
+                </li>
+               
+                <li class="nav-item">
+                    <a class="nav-link" href="support" >Podrška</a>
+                </li>
+            </ul>
+            <img src="assets/ch.png" style="height: 70px; width: 70px;">
+        </nav>
+    </div>
+   
+   
+    <div class="row" style="text-align: center;">
+        <div class="col-md-4" *ngFor="let usluga of filter" >
+         <div  *ngIf="usluga.status === 'a'">
+            <a (click)="ponuda(usluga)" href="jednaPonuda" style="color: black;"> <h2>{{ usluga.ime }}</h2></a>
+            <img [src]="usluga.galerija[0]" alt="{{ usluga.ime }}" style="height: 500px;" class="img-fluid">
+            <div class="tekst">
+              <p>{{ usluga.opis }}</p>
+            </div>
+         </div>
+        </div>
+      </div>
+      
+</div>
+<footer style="background-color: #e4519a; color: white; text-align: center; padding: 10px; margin-top: 30px; width: 100%;">
+    <p><b>Telefon</b>: +38152364879</p>
+    <p><b>Email</b>: info@celebratesmart.com</p>
+</footer>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

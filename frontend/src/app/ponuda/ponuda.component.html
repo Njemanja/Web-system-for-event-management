@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Izmenične slike i tekst</title>
+    <style>
+        body{
+            background-color: #e2f8e1;
+        }
+        p{
+            font-size: 20px; 
+        }
+        .naslov {
+            font-family: Monotype Corsiva, Times, Serif;
+            background-color: #e4519a;
+            color: #fff;
+            text-align: center;
+            padding: 5px;
+            margin-bottom: 0px;
+            font-size: 90px;
+        }
+
+        .tekst {
+            background-color: rgba(0, 0, 0, 0.5); 
+            color: #fff;
+            padding: 10px;
+            border-radius: 15px;
+            position: absolute;
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%);
+            width: 80%;
+        }
+
+        .navbar {
+            background-color: #6bcb69;
+            color: #fff;
+        }
+        a{
+            font-size: 25px;
+            color: #fff; margin-right: 20px;
+        }
+        img{
+            width: 100%; 
+            height: auto;
+            border-radius: 6%; 
+        }
+        .row{
+            padding: 20px;
+        }
+        a:hover{
+            color: #e4519a; 
+        }
+        
+        /* Stil za centriranje linkova u meniju */
+        .navbar-nav {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .navbar-collapse {
+            text-align: center;
+        }
+       
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="naslov">
+        <img src="assets/logo.png" style="height: 170px; width: 190px;">Celebrate Smart <img src="assets/logo.png" style="height: 170px; width: 190px;">
+    </div>
+    <div>
+        <nav class="navbar navbar-expand-md" >
+            <img src="assets/ch.png" style="height: 70px; width: 70px;">
+            <!-- Uklonjen ml-auto za centriranje -->
+            <ul class="navbar-nav" style="font-size: 18px; padding: 10px;">
+                <li class="nav-item">
+                    <a class="nav-link"  href="profil">Profil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pozivnica" >Napravi pozivnicu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="support" >Podrška</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="odjava()" >Odjava</a>
+                </li>
+            </ul>
+            <img src="assets/ch.png" style="height: 70px; width: 70px;">
+        </nav>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <img src="assets/slika11.jpg" alt="Slika 1"  style="height: 1200px;" class="img-fluid">
+            <div class="tekst">
+                <a href="informacijeOPonudi" (click)="ponuda('Fotografi')"><h2>Fotograf</h2></a>
+                <p>
+                    Pogledajte ponudu najboljih fotografa.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <img src="assets/slika12.jpg" alt="Slika 2" style="height: 1200px;" class="img-fluid">
+            <div class="tekst">
+                <a href="informacijeOPonudi" (click)="ponuda('Dekoracija')"><h2>Dekoracija</h2></a>
+                <p>Izaberite najbolju dekoraciju za Vašu proslavu.</p>
+            </div>
+        </div>
+    </div>
+   
+    <div class="row">
+        <div class="col-md-6">
+            <img src="assets/slika13.jpg" alt="Slika 1"  style="height: 1200px;" class="img-fluid">
+            <div class="tekst">
+                <a href="informacijeOPonudi" (click)="ponuda('prostor')"><h2>Prostor</h2></a>
+                <p>
+                    Pogledajte ponudu najboljih prostora za Vašu proslavu.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <img src="assets/slika14.jpg" alt="Slika 2" style="height: 1200px;" class="img-fluid">
+            <div class="tekst">
+                <a href="informacijeOPonudi" (click)="ponuda('Igrači')"><h2>Igrači</h2></a>
+                <p> Pogledajte ponudu najboljih izvođača/igrača za Vašu proslavu. </p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="assets/slika15.jpg" alt="Slika 1"  style="height: 1200px;" class="img-fluid">
+            <div class="tekst">
+                <a href="informacijeOPonudi" (click)="ponuda('Kokteli')"><h2>Kokteli</h2></a>
+                <p>Pogledajte ponudu najboljih koktela koji će upotpuniti Vaše slavlje.</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <img src="assets/slika16.jpg" alt="Slika 2" style="height: 1200px;" class="img-fluid">
+            <div class="tekst">
+                <a href="informacijeOPonudi" (click)="ponuda('Muzika')"><h2>Muzika</h2></a>
+                <p>Pogledajte ponudu najboljih bendova, DJ-ova i izvođača za Vašu proslavu.</p>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="text-align: center;">
+        
+        <div class="col-md-6">
+            <img src="assets/slika17.jpg" alt="Slika 1"  style="height: 1200px;" class="img-fluid">
+            <div class="tekst">
+                <a href="informacijeOPonudi" (click)="ponuda('Slatki deo')"><h2>Slatkiši</h2></a>
+                <p> Pogledajte najbolju ponudu torti i slatkiša za Vašu proslavu.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <img src="assets/slika18.jpg" alt="Slika 1"  style="height: 1200px;" class="img-fluid">
+            <div class="tekst">
+                <a href="informacijeOPonudi" (click)="ponuda('Ketering')"><h2>Ketering</h2></a>
+                <p> Pogledajte najbolju ponudu keteringa za Vašu proslavu.
+                </p>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+<footer style="background-color: #e4519a; color: white; text-align: center; padding: 10px; margin-top: 30px; width: 100%;">
+    <p><b>Telefon</b>: +38152364879</p>
+    <p><b>Email</b>: info@celebratesmart.com</p>
+</footer>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

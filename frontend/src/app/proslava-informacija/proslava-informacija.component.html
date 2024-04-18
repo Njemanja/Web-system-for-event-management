@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Izmenične slike i tekst</title>
+    <style>
+        body{
+            background-color: #e2f8e1;
+        }
+        p{
+            font-size: 20px; 
+        }
+        .naslov {
+            font-family: Monotype Corsiva, Times, Serif;
+            background-color: #e4519a;
+            color: #fff;
+            text-align: center;
+            padding: 5px;
+            margin-bottom: 0px;
+            font-size: 90px;
+        }
+
+        .tekst {
+            
+            color: #fff;
+            padding: 10px;
+            border-radius: 15px;
+          
+          
+           
+        }
+
+        .navbar {
+            background-color: #6bcb69;
+            color: #fff;
+        }
+        
+        img{
+            width: 100%; 
+            height: auto;
+            border-radius: 6%; 
+        }
+        .row{
+            padding: 10px;
+        }
+        
+        
+        /* Stil za centriranje linkova u meniju */
+        .navbar-nav {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .navbar-collapse {
+            text-align: center;
+        }
+        .login-container{
+            width: 500px;
+        }
+       .registration-container{
+        width: 100%;
+        margin-bottom: 25px;
+       }
+       .container-fluid{
+        margin-bottom: 200px;
+       }
+       .opis {
+            word-wrap: break-word;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="naslov">
+       <a href=""><img src="assets/logo.png" style="height: 170px; width: 190px;"></a> Celebrate Smart  <a href="index"><img src="assets/logo.png" style="height: 170px; width: 190px;"></a>
+    </div>
+   <div class="row">
+
+    <div class="col-sm-4">
+       
+        <div class="registration-container" style="padding: 10px;">
+            <h2 align="center">{{ sacuvanDogadjaj.naziv }}</h2>
+            <hr>
+            <p ><b>Mesto</b>: {{ sacuvanDogadjaj.mesto }}</p>
+            <hr>
+            <p><b>Kada</b>: {{ sacuvanDogadjaj.vreme | date: 'dd.MM.yyyy HH:mm' }}</p>
+            <hr>
+            <p><b>Limit</b>: {{ sacuvanDogadjaj.limit | date: 'dd.MM.yyyy HH:mm' }}</p>
+
+            <hr>
+            <p class="opis" ><b>Opis</b>: {{ sacuvanDogadjaj.opis }}</p>
+            <hr>
+
+            <p><b>Ulica</b>: {{ sacuvanDogadjaj.ulica }}</p>
+            <hr>
+            <button class="button" style="margin-right: 5px;" (click)="raspored()">Napravi raspored sedenja</button>
+            <button class="button" (click)="generisiIzvestaj()">Izveštaj za restoran</button>
+
+        </div>
+    </div>
+    <div class="col-sm-4">
+           
+            <div class="registration-container">
+                <h2 align="center">Gosti</h2>
+                <ul style="padding: 8px;">
+                    <li *ngFor="let osoba of sacuvanDogadjaj.osobe; let i = index" style="margin-top: 5px;" [ngStyle]="osobaJeUListi(osoba) ? {'color': 'green'} : {'color': 'red'}">
+                        {{ i + 1 }}. {{ osoba.ime }} ({{ osoba.email }})
+                      </li>
+                  </ul>
+                  <button class="button" (click)="posaljiPozivnicu()">Pošalji pozivnicu</button>
+                  &nbsp;
+                  <button class="button" (click)="spisak()">Spisak gostiju koji dolaze</button>
+            </div>
+
+    </div>
+    <div class="col-sm-4">
+        
+        <div class="registration-container">
+            <h2 align="center">Dodaci</h2>
+            <hr style="color: black">
+            <p><b>Hrana</b>: {{ sacuvanDogadjaj.hrana.join(', ') }}</p>
+            <hr style="color: black">
+            <p><b>Piće</b>: {{ sacuvanDogadjaj.pice.join(', ') }}</p>
+            <hr style="color: black">
+            <p><b>Ostalo</b>: {{ sacuvanDogadjaj.ostalo.join(', ') }}</p>
+            <hr style="color: black">
+            <p><b>Želje</b>: {{ sacuvanDogadjaj.zelje.join(', ') }}</p>
+              
+        </div>
+    </div>
+   </div>
+    
+   
+</div>
+<footer style="background-color: #e4519a; color: white; text-align: center; padding: 10px;  width: 100%;">
+    <p><b>Telefon</b>: +38152364879</p>
+    <p><b>Email</b>: info@celebratesmart.com</p>
+</footer>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

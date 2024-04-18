@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+    integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+       integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+       crossorigin=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+    <title>Izmenične slike i tekst</title>
+    <style>
+        body{
+            background-color: #e2f8e1;
+        }
+        p{
+            font-size: 20px; 
+        }
+        .naslov {
+            font-family: Monotype Corsiva, Times, Serif;
+            background-color: #e4519a;
+            color: #fff;
+            text-align: center;
+            padding: 8px;
+            margin-bottom: 0px;
+            font-size: 90px;
+          
+        }
+
+        .tekst {
+            background-color: rgba(0, 0, 0, 0.5); 
+            color: #fff;
+            padding: 10px;
+            border-radius: 15px;
+            position: absolute;
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%);
+            width: 80%;
+        }
+
+        .navbar {
+            background-color: #6bcb69;
+            color: #fff;
+        }
+        a{
+            font-size: 25px;
+            color: #fff; margin-right: 20px;
+        }
+        img{
+            width: 300px;
+            height: 400px; 
+            height: auto;
+            border-radius: 6%; 
+        }
+        .row{
+            padding: 20px;
+        }
+        a:hover{
+            color: #e4519a; 
+        }
+        
+        .navbar-nav {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .navbar-collapse {
+            text-align: center;
+        }
+        .button {
+            border: none;
+            background-color: #6bcb69; 
+            color: #fff; 
+            padding: 10px 20px; 
+            border-radius: 20px; 
+            cursor: pointer;
+            font-size: 17px;
+            margin-top: 25px;
+        }
+
+        .button:hover {
+            background-color: #a7f9a3;
+        }
+        input::file-selector-button {
+            font-weight: bold;
+            color: #6bcb69;
+            padding: 0.5em;
+        }
+        input::file-selector-button:hover {
+            font-weight: bold;
+            color: #a7f9a3;
+            padding: 0.5em;
+           
+        }
+
+        .canvas-container {
+            margin-bottom: 10px;
+            padding: 20px; 
+        }
+
+        .stoClass{
+            border: none;
+            background-color: #6bcb69; 
+            color: #fff; 
+            padding: 10px 20px; 
+            border-radius: 20px; 
+            cursor: pointer;
+            font-size: 17px;
+            justify-self: center;
+        }
+        .stoClass:hover {
+            background-color: #a7f9a3;
+            
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 4px;
+        }
+        th{
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2; 
+        }
+
+        tr:nth-child(odd) {
+            background-color: #ffffff; 
+        }
+
+        th {
+            background-color: #6bcb69;
+            color: white;
+        }
+
+        .obrisi {
+            border: none;
+            background-color: #6bcb69; 
+            color: #fff; 
+            padding: 5px; 
+            border-radius: 6%; 
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .obrisi:hover {
+            background-color: #a7f9a3;
+        }
+
+        .sort{
+            border: none;
+            background-color: #e4519a; 
+            color: #fff; 
+            padding: 10px 20px; 
+            border-radius: 20px; 
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .sort:hover{
+            background-color: #e498be;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="naslov">
+       <a href=""> <img src="assets/logo.png" style="height: 170px; width: 190px;"></a>Celebrate Smart  <a href=""> <img src="assets/logo.png" style="height: 170px; width: 190px;"></a>
+    </div>
+    <div>
+        <nav class="navbar navbar-expand-md" >
+            <img src="assets/ch.png" style="height: 70px; width: 70px;">
+            <ul class="navbar-nav" style="font-size: 18px; padding: 10px;">
+                <li class="nav-item">
+                  <h1>Kalendar</h1>
+                </li>
+                
+                
+            </ul>
+            <img src="assets/ch.png" style="height: 70px; width: 70px;">
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-container" style="width: 100%;">
+                
+              
+                <div style="text-align: center; margin: 20px; padding-right: 10px; width: 100%;">
+                    <button (click)="sortirajPoDatumu()" class="sort" style="margin-right: 10px;">Sortiraj po datumu (rastuće)</button>
+                    <button (click)="obrnutoSortirajPoDatumu()"  class="sort"  style="margin-right: 10px;">Obrnuto sortiraj po datumu (opadajuće)</button>
+                    <button (click)="sortirajPoNovcu()"  class="sort" style="margin-right: 10px;">Sortiraj po novcu (rastuće)</button>
+                    <button (click)="obrnutoSortirajPoNovcu()" class="sort"  >Obrnuto sortiraj po novcu (opadajuće)</button>
+                  </div>
+                  
+                <table style="width: 100%; padding-bottom: 5px;" align="center">
+                    <thead >
+                        <tr >
+                            <th>Mesto</th>
+                            <th >Datum</th>
+                            <th>Vreme</th>
+                            <th>Novac</th>
+                            <th>Pozivalac</th>
+                            <th>Telefon</th>
+                            <th>Email</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of displayedItems;let i = index">
+                            <td>{{item.mesto}}</td>
+                            <td>{{item.datum | date:'dd.MM.YYYY.'}}</td>
+                            <td>{{item.datum | date:'HH:mm:ss'}}</td>
+                            <td>{{item.novac}}</td>
+                            <td>{{item.pozivalac}}</td>
+                            <td>{{item.telefon}}</td>
+                            <td>{{item.email}}</td>
+                            <td style="text-align: center;"><button class="obrisi" (click)="obrisiRed(i)">Obriši</button></td>
+                        </tr>
+
+                    </tbody>
+
+  
+                </table>
+                <button (click)="loadMore()" class="button">Učitaj</button>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12" >
+          
+            <div class="form-container">
+                <b><h2  style="margin-bottom: 20px;" >Dodaj u kalendar</h2></b>
+                <div  style="margin-bottom: 20px;" >
+                    <label for="datum">Datum:&nbsp;</label>
+                    <input type="datetime-local" id="datum" [(ngModel)]="datum">
+                </div>
+                <div>
+                    <label for="mesto">Mesto:</label>
+                    <input type="text" id="mesto" [(ngModel)]="mesto">
+                </div>
+                
+                <div>
+                    <label for="novac">Novac:</label>
+                    <input type="text" id="novac" [(ngModel)]="novac">
+                </div>
+                <div>
+                    <label for="pozivalac">Pozivalac:</label>
+                    <input type="text" id="pozivalac" [(ngModel)]="pozivalac">
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" [(ngModel)]="email">
+                </div>
+                <div>
+                    <label for="telefon">Telefon:</label>
+                    <input type="text" id="telefon" [(ngModel)]="telefon">
+                </div>
+                <button (click)="dodajRed()" class="button">Dodaj u kalendar</button>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+       
+        <div class="col-sm-12" >
+          
+            <div class="form-container">
+                <b><h2  style="margin-bottom: 20px;" >Zarađeno</h2></b>
+                
+                <b>{{ukupno}} &euro;</b>
+                <div style="margin-top: 20px;">
+                    <button class="button" (click)="izvestaj()">Izveštaj o novcu po mesecu i godini</button>
+                  </div>
+
+                  <div style="margin-top: 20px;">
+                    <button class="button" (click)="izvestajY()">Izveštaj o novcu po godini</button>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5" >
+            <div class="chart-container">
+                <h2> Izveštaj o prihodu po mesecu i godini</h2>
+                <canvas id="grafikon" width="800" height="400"></canvas>
+            </div>
+        </div>
+        <div class="col-md-5" >
+            <div class="chart-container">
+                <h2> Izveštaj o prihodu po godini</h2>
+                <canvas id="grafikon1" width="800" height="400"></canvas>
+            </div>
+        </div>
+        
+    </div>
+    
+    <footer style="background-color: #e4519a; color: white; text-align: center; padding: 10px; margin-top: 30px; width: 100%;">
+        <p><b>Telefon</b>: +38152364879</p>
+        <p><b>Email</b>: info@celebratesmart.com</p>
+        {{  this.korisnickoIme}}
+          
+          
+    </footer>
+</div>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

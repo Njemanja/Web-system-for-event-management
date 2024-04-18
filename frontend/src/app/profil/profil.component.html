@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Izmenične slike i tekst</title>
+    <style>
+        body{
+            background-color: #e2f8e1;
+        }
+        p{
+            font-size: 20px; 
+        }
+        .naslov {
+            font-family: Monotype Corsiva, Times, Serif;
+            background-color: #e4519a;
+            color: #fff;
+            text-align: center;
+            padding: 5px;
+            margin-bottom: 0px;
+            font-size: 90px;
+        }
+
+        .tekst {
+            background-color: rgba(0, 0, 0, 0.5); 
+            color: #fff;
+            padding: 10px;
+            border-radius: 15px;
+            position: absolute;
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%);
+            width: 80%;
+        }
+
+        .navbar {
+            background-color: #6bcb69;
+            color: #fff;
+        }
+        
+        img{
+            width: 100%; 
+            height: auto;
+            border-radius: 6%; 
+        }
+        .row{
+            padding: 10px;
+        }
+        
+        
+        .navbar-nav {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .navbar-collapse {
+            text-align: center;
+        }
+        .login-container{
+            width: 500px;
+        }
+       .registration-container{
+        width: 100%;
+        margin-bottom: 25px;
+       }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="naslov">
+       <a href=""><img src="assets/logo.png" style="height: 170px; width: 190px;"></a> Celebrate Smart  <a href="index"><img src="assets/logo.png" style="height: 170px; width: 190px;"></a>
+    </div>
+    <div>
+        <nav class="navbar navbar-expand-md" >
+            <img src="assets/ch.png" style="height: 70px; width: 70px;">
+            <ul class="navbar-nav" style="font-size: 18px; padding: 10px;">
+                <li class="nav-item">
+                     <a href="ponuda" style=" color: #ffffff;">Ponuda</a>
+                </li>
+               
+              
+            </ul>
+            <img src="assets/ch.png" style="height: 70px; width: 70px;">
+        </nav>
+    </div>
+   <div class="row">
+
+    <div class="col-sm-4">
+        <div class="registration-container">
+            <h2>Izmenite informacije</h2>
+            <form >
+                <input type="text" name="username" placeholder="Korisničko ime"   [(ngModel)]="korisnickoIme" required>
+                <br>
+                <input type="password" name="password" placeholder="Nova lozinka"  [(ngModel)]="lozinka" required>
+                <br>
+                <input type="password" name="confirm_password" placeholder="Potvrdite novu lozinku"   [(ngModel)]="lozinka2" required>
+                <br>
+                <input type="text" name="ime" placeholder="Ime"  [(ngModel)]="ime" required>
+                <br>
+                <input type="text" name="prezime" placeholder="Prezime"  [(ngModel)]="prezime" required>
+                <br>
+                <input type="tel" name="broj_telefona" placeholder="Broj telefona"  [(ngModel)]="telefon" required>
+                <br>
+                <input type="email" name="email" placeholder="Email"  [(ngModel)]="email" required>
+                <br>
+                <br>
+                <button type="submit" (click)="izmeni()" class="button">Izmeni</button>
+                <br>
+                <br>
+            </form>
+        </div>
+    </div>
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+        <div class="registration-container">
+            <h2>Moji događaji</h2>
+            <ul>
+                <li *ngFor="let dogadjaj of mojiDogajdjaji">
+                  <a href="informacijeOProslavi" (click)="sacuvajDogadjaj(dogadjaj)" style=" color: #f384e6;">{{ dogadjaj.naziv }}</a>
+                </li>
+            </ul>
+              
+        </div>
+    </div>
+   </div>
+    
+   
+</div>
+<footer style="background-color: #e4519a; color: white; text-align: center; padding: 10px;  width: 100%;">
+    <p><b>Telefon</b>: +38152364879</p>
+    <p><b>Email</b>: info@celebratesmart.com</p>
+</footer>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Izmenične slike i tekst</title>
+    <style>
+        body{
+            background-color: #e2f8e1;
+        }
+        p{
+            font-size: 20px; 
+        }
+        .naslov {
+            font-family: Monotype Corsiva, Times, Serif;
+            background-color: #e4519a;
+            color: #fff;
+            text-align: center;
+            padding: 5px;
+            margin-bottom: 0px;
+            font-size: 90px;
+        }
+
+        .tekst {
+            
+            color: #fff;
+            padding: 10px;
+            border-radius: 15px;
+          
+          
+           
+        }
+
+        .navbar {
+            background-color: #6bcb69;
+            color: #fff;
+        }
+        
+        img{
+            width: 100%; 
+            height: auto;
+            border-radius: 6%; 
+        }
+        .row{
+            padding: 10px;
+        }
+        
+        
+        /* Stil za centriranje linkova u meniju */
+        .navbar-nav {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .navbar-collapse {
+            text-align: center;
+        }
+        .login-container{
+            width: 500px;
+        }
+       .registration-container{
+        width: 100%;
+        margin-bottom: 25px;
+       }
+       .container-fluid{
+        margin-bottom: 200px;
+       }
+       .opis {
+            word-wrap: break-word;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="naslov">
+       <a href=""><img src="assets/logo.png" style="height: 170px; width: 190px;"></a> Celebrate Smart  <a href="index"><img src="assets/logo.png" style="height: 170px; width: 190px;"></a>
+    </div>
+    <div class="row">
+        <div class="col-sm-4" *ngFor="let grupa of grupisaniRaspored; let i = index">
+            <div class="registration-container">
+                <h3 align="center">Sto {{ grupa.sto }}</h3>
+                <hr>
+                <ul>
+                  <li *ngFor="let r of grupa.raspored; let j = index" style="font-size: 20px;">
+                    {{ r.ime }}
+                  </li>
+                </ul>
+            </div>
+          </div>
+          
+    </div>
+    
+   
+</div>
+<footer style="background-color: #e4519a; color: white; text-align: center; padding: 10px;  width: 100%;">
+    <p><b>Telefon</b>: +38152364879</p>
+    <p><b>Email</b>: info@celebratesmart.com</p>
+</footer>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+
+.header {
+    background-color: #ffb669;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin: 0;
+}
+
+
+
+.form-container {
+    text-align: center;
+    padding: 40px;
+    width: 370px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+
+.form-container h2 {
+    margin-top: 0;
+    font-size: 24px;
+}
+
+
+
+
+a:hover{
+    color: #ffb669; 
+}
+a{
+    color: #f4d6b5;
+}

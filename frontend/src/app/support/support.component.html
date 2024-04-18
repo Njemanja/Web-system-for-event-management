@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Izmenične slike i tekst</title>
+    
+
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="naslov">
+       <a href=""><img src="assets/logo.png" style="height: 170px; width: 190px;"></a> Celebrate Smart  <a href=""><img src="assets/logo.png" style="height: 170px; width: 190px;"></a>
+    </div>
+  
+    <div class="podrska">
+        <h1>Podrška</h1>
+     </div>
+    
+    <div class="area">
+        <input type="text" name="email" placeholder="Email"  class="mail" [(ngModel)]="email" required>
+        <br>
+        <textarea placeholder="Unesite tekst ovde" [(ngModel)]="text"></textarea>
+        <button (click)="send()">Pošalji</button>
+    </div>
+    
+</div>
+
+<footer style="background-color: #e4519a; color: white; text-align: center; padding: 10px;  width: 100%;">
+    <p><b>Telefon</b>: +38152364879</p>
+    <p><b>Email</b>: info@celebratesmart.com</p>
+</footer>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

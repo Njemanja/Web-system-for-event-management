@@ -1,0 +1,108 @@
+body{
+    background-color: #e2f8e1;
+}
+p{
+    font-size: 20px; 
+}
+.naslov {
+    font-family: Monotype Corsiva, Times, Serif;
+    background-color: #e4519a;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 0px;
+    font-size: 90px;
+}
+
+.tekst {
+    background-color: rgba(0, 0, 0, 0.5); 
+    color: #fff;
+    padding: 10px;
+    border-radius: 15px;
+    position: absolute;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    width: 80%;
+}
+
+.navbar {
+    background-color: #6bcb69;
+    color: #fff;
+}
+
+img{
+    width: 100%; 
+    height: auto;
+    border-radius: 6%; 
+}
+.row{
+    padding: 10px;
+}
+
+/* Stil za centriranje linkova u meniju */
+.navbar-nav {
+    width: 100%;
+    justify-content: center;
+}
+
+.navbar-collapse {
+    text-align: center;
+}
+
+.login-container{
+    width: 500px;
+}
+
+.registration-container{
+    width: 500px;
+}
+
+textarea {
+    margin-top: 50px;
+    height: 500px;
+    width: 50%;
+    padding: 10px;
+    margin: 0 auto; /* Centriranje input polja */
+    display: block;
+    box-sizing: border-box; /* Uključuje padding i ivice u širinu */
+    resize: vertical; /* Omogućava samo vertikalno povećavanje */
+    font-size: 18px; /* Povećajte veličinu fonta */
+}
+
+button {
+    background-color: #6bcb69;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+    display: block;
+    margin: 20px auto;
+}
+
+button:hover {
+    background-color: #a7f9a3;
+}
+
+.area{
+    margin-top: 50px;
+    text-align: center; /* Centriranje sadržaja unutar .area div-a */
+}
+
+.podrska{
+    color: #e4519a;
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 0px;
+    font-size: 90px;
+}
+
+.mail{
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    align-self: center;
+    width: 500px;
+}

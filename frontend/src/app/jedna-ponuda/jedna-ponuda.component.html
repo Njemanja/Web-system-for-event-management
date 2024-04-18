@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+    integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+    integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+    crossorigin=""></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <title>Izmenične slike i tekst</title>
+    <style>
+        body{
+            background-color: #e2f8e1;
+        }
+        p{
+            font-size: 20px; 
+        }
+        .naslov {
+            font-family: Monotype Corsiva, Times, Serif;
+            background-color: #e4519a;
+            color: #fff;
+            text-align: center;
+            padding: 5px;
+            margin-bottom: 0px;
+            font-size: 90px;
+        }
+
+        .tekst {
+            background-color: rgba(0, 0, 0, 0.5); 
+            color: #fff;
+            padding: 10px;
+            border-radius: 15px;
+            position: absolute;
+            top: 0; 
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            overflow-wrap: break-word; 
+        }
+
+
+        #map {
+            height: 400px;
+            margin-top: 20px;
+        }
+
+        .navbar {
+            background-color: #6bcb69;
+            color: #fff;
+        }
+        a{
+            font-size: 25px;
+            color: #fff; margin-right: 20px;
+        }
+        img{
+            width: 100%; 
+            height: auto;
+            border-radius: 6%; 
+        }
+        .row{
+            padding: 20px;
+        }
+        a:hover{
+            color: #e4519a; 
+        }
+        
+        .navbar-nav {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .navbar-collapse {
+            text-align: center;
+        }
+       
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="naslov">
+        <img src="assets/logo.png" style="height: 170px; width: 190px;">Celebrate Smart <img src="assets/logo.png" style="height: 170px; width: 190px;">
+    </div>
+    <div>
+        <nav class="navbar navbar-expand-md" >
+            <img src="assets/ch.png" style="height: 70px; width: 70px;">
+            <ul class="navbar-nav" style="font-size: 18px; padding: 10px;">
+                <li class="nav-item">
+                    <h1>{{ ponuda.ime }}</h1>
+                </li>
+               
+              
+            </ul>
+            <img src="assets/ch.png" style="height: 70px; width: 70px;">
+        </nav>
+    </div>
+    
+   
+    <div class="row" style="text-align: center;">
+        <div class="col-md-3" >
+            <p class="tekst"> {{ ponuda.opis }}</p>
+
+        </div>
+        <div class="col-md-6" >
+            <div class="container">
+             
+                <div class="galerija">
+                  <img [src]="ponuda.galerija[trenutnaSlikaIndex]" alt="Slika restorana" style="width: 100%; height: 700px;">
+                  <button (click)="sledecaSlika()" class="button">SLEDEĆA</button>
+                </div>
+                <p style="padding: 10px;" *ngIf="s"><strong>Kapacitet :</strong> {{ ukupanBrojStolica }}</p>
+                <p style="padding: 10px;"><strong>Email :</strong> {{ ponuda.email }}</p>
+                <p style="padding: 10px;"><strong>Telefon :</strong> {{ ponuda.telefon }}</p>
+                <p style="padding: 10px;"><strong>Mesto :</strong> {{ ponuda.mesto }}</p>
+                <p style="padding: 10px;"><strong><a style="color: black;" href="{{ponuda.video}}">Video</a></strong>  </p>
+              
+              </div>
+
+              <div id="map"></div>
+              <p id="address"></p>
+        </div>
+        <div class="col-md-3" >
+        
+        </div>
+      </div>
+      
+</div>
+<footer style="background-color: #e4519a; color: white; text-align: center; padding: 10px; margin-top: 30px; width: 100%;">
+    <p><b>Telefon</b>: +38152364879</p>
+    <p><b>Email</b>: info@celebratesmart.com</p>
+</footer>
+
+
+</body>
+</html>

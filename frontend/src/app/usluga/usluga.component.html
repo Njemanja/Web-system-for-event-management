@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+    integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+       integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+       crossorigin=""></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+    <title>Izmenične slike i tekst</title>
+    <style>
+        body{
+            background-color: #e2f8e1;
+        }
+        p{
+            font-size: 20px; 
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 4px;
+            text-align: center;
+        }
+        th{
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2; 
+        }
+
+        tr:nth-child(odd) {
+            background-color: #ffffff; 
+        }
+
+        th {
+            background-color: #6bcb69;
+            color: white;
+        }
+        .naslov {
+            font-family: Monotype Corsiva, Times, Serif;
+            background-color: #e4519a;
+            color: #fff;
+            text-align: center;
+            padding: 8px;
+            margin-bottom: 0px;
+            font-size: 90px;
+          
+        }
+
+        .tekst {
+            background-color: rgba(0, 0, 0, 0.5); 
+            color: #fff;
+            padding: 10px;
+            border-radius: 15px;
+            position: absolute;
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%);
+            width: 80%;
+        }
+
+        .navbar {
+            background-color: #6bcb69;
+            color: #fff;
+        }
+        a{
+            font-size: 25px;
+            color: #fff; margin-right: 20px;
+        }
+        img{
+            width: 300px;
+            height: 400px; 
+            height: auto;
+            border-radius: 6%; 
+        }
+        .row{
+            padding: 20px;
+        }
+        a:hover{
+            color: #e4519a; 
+        }
+        
+        .navbar-nav {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .navbar-collapse {
+            text-align: center;
+        }
+        .button {
+            border: none;
+            background-color: #6bcb69; 
+            color: #fff; 
+            padding: 10px 20px; 
+            border-radius: 20px; 
+            cursor: pointer;
+            font-size: 17px;
+        }
+
+        .button:hover {
+            background-color: #a7f9a3;
+        }
+        input::file-selector-button {
+            font-weight: bold;
+            color: #6bcb69;
+            padding: 0.5em;
+        }
+        input::file-selector-button:hover {
+            font-weight: bold;
+            color: #a7f9a3;
+            padding: 0.5em;
+           
+        }
+
+        .canvas-container {
+            margin-bottom: 10px;
+            padding: 20px; 
+        }
+
+        .stoClass{
+            border: none;
+            background-color: #6bcb69; 
+            color: #fff; 
+            padding: 10px 20px; 
+            border-radius: 20px; 
+            cursor: pointer;
+            font-size: 17px;
+            justify-self: center;
+        }
+        .stoClass:hover {
+            background-color: #a7f9a3;
+            
+        }
+        h2{
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="naslov">
+       <a href=""> <img src="assets/logo.png" style="height: 170px; width: 190px;"></a>Celebrate Smart  <a href=""> <img src="assets/logo.png" style="height: 170px; width: 190px;"></a>
+    </div>
+    <div>
+        <nav class="navbar navbar-expand-md" >
+            <h2>{{ime}}</h2>
+            <br>
+            <img src="assets/ch.png" style="height: 70px; width: 70px;">
+            <ul class="navbar-nav" style="font-size: 18px; padding: 10px;">
+                <li class="nav-item">
+                    <a class="nav-link" href="/usluge/profil" >Profil</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="support" >Podrška</a>
+                </li>
+            </ul>
+            <img src="assets/ch.png" style="height: 70px; width: 70px;">
+            <br>
+            <h2>{{ime}}</h2>
+        </nav>
+    </div>
+   
+    <div class="row">
+       
+        <div class="col-sm-3">
+            <div class="form-container">
+                <h2>Dodajte uslugu</h2>
+                <form>
+                    <input type="text" name="ime" placeholder="Ime" [(ngModel)]="ime" required>
+                    <br>
+                    <input type="text" name="mesto" placeholder="Mesto" [(ngModel)]="mesto" required>
+                    <br>
+                    <input type="tel" name="broj_telefona" placeholder="Broj telefona" [(ngModel)]="telefon" required>
+                    <br>
+                    <input type="email" name="email" placeholder="Email" [(ngModel)]="email" required>
+                    <br>
+                    Galerija 
+                    <input type="file" id="fileInput" [(ngModel)]="galerija" (change)="ucitajGaleriju($event)"  multiple>
+                    <button class="button" (click)="obrisiGaleriju()" style="margin-bottom: 30px;">Obriši slike</button>
+                    <br>
+                    <label for="vrsta">Vrsta usluge&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <select name="vrsta" [(ngModel)]="vrsta" (change)="vrstaChanged()" required>
+                        <option value="Restoran">Restoran</option>
+                        <option value="Klub">Klub</option>
+                        <option value="Bar">Bar</option>
+                        <option value="Splav">Splav</option>
+                        <option value="Brod">Brod</option>
+                        <option value="Kafić">Kafić</option>
+                        <option value="Dekoracija">Dekoracija</option>
+                        <option value="Ketering">Ketering</option>
+                        <option value="Slatki deo">Slatki deo</option>
+                        <option value="Muzika">Muzika</option>
+                        <option value="Kokteli">Kokteli</option>
+                        <option value="Igrači">Igrači</option>
+                        <option value="Fotografi">Fotografi</option>
+                    </select>
+                    <br>
+                    <textarea style="width: 100%;" name="tekst" placeholder="Opis" [(ngModel)]="tekst" required></textarea>
+                    <br>
+                    <button type="submit" (click)="potvrdi()" class="button" style="background-color: #e4519a;">Potvrdi</button>
+                    <br>
+                    <p style="color: red; margin-top: 10px;">{{poruka}}</p>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-sm-3" *ngIf="showAdditionalFields">
+            <div class="form-container">
+                
+                <label><h2>Stolovi</h2></label>
+                <br>
+                <form>
+                    <br>
+                    <div  >
+                        <label >Vrsta stola&nbsp;&nbsp;</label>
+                        <select name="vrstaStola" [(ngModel)]="vrstaStola" (change)="vrstaStolaChanged()" required>
+                            <option value="Okrugli">Okrugli sto</option>
+                            <option value="Pravougaoni">Pravougaoni sto</option>
+                        </select>
+
+                        <div *ngIf="vrstaStola === 'Okrugli'">
+                            <br>
+                            <label>Prečnik stola</label>
+                            <br>
+                            <input type="number" name="precnikStola"  [(ngModel)]="precnikStola">
+                            <br>
+                            <label>Broj stolica</label>
+                            <br>
+                            <input type="number" name="brojStolicaOkrugli"  [(ngModel)]="brojStolicaOkrugli">
+                        </div>
+                        <div *ngIf="vrstaStola === 'Pravougaoni'">
+                            <br>
+                            <label>Širina stola </label>
+                            &nbsp;<input  name="sirinaStola" [(ngModel)]="sirinaStola">
+                            <br>
+                            <label>Dužina stola</label>
+                            <input  name="duzinaStola" [(ngModel)]="duzinaStola">
+                            <br>
+                            <label>Broj stolica po širini</label>
+                            <input  name="brojStolicaPravougaoni"  [(ngModel)]="brojStolicaPravougaoniDuzina">
+                            <br>
+                            <input type="checkbox" [(ngModel)]="isChecked" (change)="promeni()" > Sa obe strane
+                            <br>
+                            <label>Broj stolica po dužini</label>
+                            <input  name="brojStolicaPravougaoni"  [(ngModel)]="brojStolicaPravougaoniSirina">
+                            <br>
+                            <input type="checkbox" [(ngModel)]="isChecked1" (change)="promeni1()" > Sa obe strane
+                        </div>
+                        <button type="submit" (click)="dodajSto(precnikStola, brojStolicaOkrugli,sirinaStola,duzinaStola,brojStolicaPravougaoni,vrstaStola)" class="button" style="margin-top: 20px;">Dodaj sto</button>
+
+                    
+                    </div>
+                   
+                </form>                
+            </div>
+            
+          
+        </div>
+
+
+       
+        <div class="col-sm-3" *ngIf="!(galerija.length===0)">
+            <div class="form-container">
+                <h2>Dodajte uslugu</h2>
+                <div *ngFor="let g of galerija" style="margin-top: 10px; margin-right: 50px;">
+                    <table align="center" class="dodaj">
+                        <tr  style="text-align: center; background-color: white; margin-bottom: 10px; margin-right: 5px;">
+                            <td align="center"><img [src]="g"  style="align-self: center; "></td>
+                        </tr>
+                        <tr style="text-align: center;">
+                            <td colspan="2" style="margin-top: 10px;"><button class="button" (click)="obrisiSlikuIzGalerije(g)">Obriši</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 canvas-container" #canvasDiv>
+            
+
+        </div>
+    </div>
+    <div>
+        <h2>Okrugli stolovi</h2>
+        <table style="text-align: center; width: 50%; " *ngIf="okrugliStolovi.length > 0">
+          <tr>
+            <th>Vrsta</th>
+            <th>Precnik</th>
+            <th>Broj stolica</th>
+          </tr>
+          <tr *ngFor="let s of okrugliStolovi" >
+            <td >Okrugli</td>
+            <td >{{ s.r }}</td>
+            <td >{{ s.stolicaO }}</td>
+          </tr>
+        </table>
+      
+        <h2>Pravougaoni stolovi</h2>
+        <table style="padding: 5px; text-align: center;" *ngIf="pravougaoniStolovi.length > 0">
+          <tr>
+            <th>Vrsta</th>
+            <th>Dužina</th>
+            <th>Širina</th>
+            <th>Broj stolica po dužini</th>
+            <th>Broj stolica po širini</th>
+            <th>Stolice sa obe strane dužine</th>
+            <th>Stolice sa obe strane širine</th>
+          </tr>
+          <tr *ngFor="let s of pravougaoniStolovi">
+            <td>Pravougaoni</td>
+            <td>{{ s.x }}</td>
+            <td>{{ s.y }}</td>
+            <td>{{ s.stolicaPduzina }}</td>
+            <td>{{ s.stolicaPsirina }}</td>
+            <td *ngIf="s.obeStraneD ">Da</td>
+            <td *ngIf="!s.obeStraneD">Ne</td>
+            <td *ngIf="s.obeStraneS">Da</td>
+            <td *ngIf="!s.obeStraneS">Ne</td>
+          </tr>
+        </table>
+      </div>
+    
+      
+
+
+    <footer style="background-color: #e4519a; color: white; text-align: center; padding: 10px; margin-top: 30px; width: 100%;">
+        <p><b>Telefon</b>: +38152364879</p>
+        <p><b>Email</b>: info@celebratesmart.com</p>
+
+          
+          
+    </footer>
+</div>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

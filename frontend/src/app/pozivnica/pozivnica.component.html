@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+    integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+    crossorigin=""/>
+
+    <!-- Include Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+       integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+       crossorigin=""></script>
+
+    <!-- Include Bootstrap CSS (optional) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+    <title>Izmenične slike i tekst</title>
+    <style>
+        body{
+            background-color: #e2f8e1;
+        }
+        p{
+            font-size: 20px; 
+        }
+        .naslov {
+            font-family: Monotype Corsiva, Times, Serif;
+            background-color: #e4519a;
+            color: #fff;
+            text-align: center;
+            padding: 8px;
+            margin-bottom: 0px;
+            font-size: 90px;
+          
+        }
+
+        .tekst {
+            background-color: rgba(0, 0, 0, 0.5); 
+            color: #fff;
+            padding: 10px;
+            border-radius: 15px;
+            position: absolute;
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%);
+            width: 80%;
+        }
+
+        .navbar {
+            background-color: #6bcb69;
+            color: #fff;
+        }
+        a{
+            font-size: 25px;
+            color: #fff; margin-right: 20px;
+        }
+        img{
+            width: 300px;
+            height: 400px; 
+            height: auto;
+            border-radius: 6%; 
+        }
+        .row{
+            padding: 20px;
+        }
+        a:hover{
+            color: #e4519a; 
+        }
+        
+        /* Stil za centriranje linkova u meniju */
+        .navbar-nav {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .navbar-collapse {
+            text-align: center;
+        }
+        .button {
+            border: none;
+            background-color: #6bcb69; 
+            color: #fff; 
+            padding: 10px 20px; 
+            border-radius: 20px; 
+            cursor: pointer;
+            font-size: 17px;
+        }
+
+        .button1 {
+            border: none;
+            background-color: #6bcb69;
+            color: #fff; 
+            padding: 10px 20px; 
+            border-radius: 20px; 
+            cursor: pointer;
+            font-size: 17px;
+        }
+
+        .button1:hover {
+           
+            background-color: #a0e19e;
+            
+        }
+
+        .button:hover {
+            background-color: #a7f9a3;
+        }
+        input::file-selector-button {
+            font-weight: bold;
+            color: #6bcb69;
+            padding: 0.5em;
+        }
+        input::file-selector-button:hover {
+            font-weight: bold;
+            color: #a7f9a3;
+            padding: 0.5em;
+           
+        }
+
+        .canvas-container {
+            margin-bottom: 10px;
+            padding: 20px; /* Prilagodite ovu vrednost prema vašim potrebama */
+        }
+
+        .stoClass{
+            border: none;
+            background-color: #6bcb69; 
+            color: #fff; 
+            padding: 10px 20px; 
+            border-radius: 20px; 
+            cursor: pointer;
+            font-size: 17px;
+            justify-self: center;
+        }
+        .stoClass:hover {
+            background-color: #a7f9a3;
+            
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="naslov">
+       <a href=""> <img src="assets/logo.png" style="height: 170px; width: 190px;"></a>Celebrate Smart  <a href=""> <img src="assets/logo.png" style="height: 170px; width: 190px;"></a>
+    </div>
+    <div>
+        <nav class="navbar navbar-expand-md" >
+            <img src="assets/ch.png" style="height: 70px; width: 70px;">
+            <ul class="navbar-nav" style="font-size: 18px; padding: 10px;">
+                <li class="nav-item">
+                    <a class="nav-link" href="ponuda" >Ponuda</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/profil" >Profil</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="support" >Podrška</a>
+                </li>
+            </ul>
+            <img src="assets/ch.png" style="height: 70px; width: 70px;">
+        </nav>
+    </div>
+    <div class="row">
+        <!-- Forma (3 kolona) -->
+        <div class="col-sm-3">
+            <div class="form-container">
+                <h2>Informacije o proslavi</h2>
+                <form>
+                    <input type="text" name="ime" placeholder="Naziv događaja" [(ngModel)]="naziv" required>
+                    <br>
+                    <input type="text" name="ime" placeholder="Mesto" [(ngModel)]="mesto" required>
+                    <br>
+                    <input type="text" name="ime" placeholder="Ulica" [(ngModel)]="ulica" required>
+                    <br>
+                    <select name="usluga" [(ngModel)]="idMesta" required>
+                        <option value="" disabled selected>Izaberite uslugu</option>
+                        <option *ngFor="let usluga of sveUsluge" [value]="usluga.id">{{ usluga.ime }}</option>
+                      </select>                    <br>
+                    Vreme događaja &nbsp;<input type="datetime-local" name="mesto" placeholder="Mesto" [(ngModel)]="datum" style="margin-bottom: 10px;" required>
+                    <br>
+                    Vreme potvrde &nbsp;<input type="datetime-local" name="mesto" placeholder="Mesto" [(ngModel)]="potvrdaVreme" style="margin-bottom: 10px;" required>
+                    <br>
+                    <textarea style="width: 100%; height: 200px;" name="tekst" placeholder="Opis" [(ngModel)]="tekst" required></textarea>
+                    <br>
+                    <button type="submit" (click)="potvrdi()" class="button" style="background-color: #e4519a;">Potvrdi</button>
+                    <br>
+                    <p style="color: red;margin-top: 10px;">{{poruka}}</p>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-container">
+                <h2>Dodaj osobu</h2>
+                <form>
+                    <input type="text" name="ime" placeholder="Email" [(ngModel)]="email" required>
+                    <br>
+                    <input type="text" name="mesto" placeholder="Ime i prezime" [(ngModel)]="osoba" required>
+                    <br>
+                    <button type="submit" (click)="dodajOsobu()" class="button1" >Potvrdi</button>
+                </form>
+            </div>
+            <div class="form-container">
+                <h2>Dodaj hranu</h2>
+                <form>
+                    <input type="text" name="hrana" placeholder="Naziv hrane" [(ngModel)]="h" required>
+                    <br>
+                    <button type="submit" (click)="dodajHranu()" class="button1" >Potvrdi</button>
+                </form>
+            </div>
+            <div class="form-container">
+                <h2>Dodaj piće</h2>
+                <form>
+                    <input type="text" name="pice" placeholder="Naziv pića" [(ngModel)]="p" required>
+                    <br>
+                    <button type="submit" (click)="dodajPice()" class="button1" >Potvrdi</button>
+                </form>
+            </div>
+            <div class="form-container">
+                <h2>Dodaj ostalo</h2>
+                <form>
+                    <input type="text" name="ostalo" placeholder="Ostalo" [(ngModel)]="o" required>
+                    <br>
+                    <button type="submit" (click)="dodajOstalo()" class="button1">Potvrdi</button>
+                   
+                </form>
+            </div>
+            <div class="form-container">
+                <h2>Dodaj zelje</h2>
+                <form>
+                    <input type="text" name="ostalo" placeholder="Poklon" [(ngModel)]="poklon" required>
+                    <br>
+                    <button type="submit" (click)="dodajPoklone()" class="button1" >Potvrdi</button>
+                </form>
+            </div>
+            
+        </div>
+<div class="col-sm-3">
+    <div class="form-container">
+        <h2>Osobe</h2>
+        <hr>
+        <ul>
+            <li *ngFor="let osoba of sveOsobe; let i = index">
+            {{ osoba.ime }} - {{ osoba.email }} 
+            <button (click)="obrisiOsobu(i)" class="button1" >Obriši</button>
+            </li>
+        </ul>
+    </div>
+    </div>
+    <div class="col-sm-3">
+                <!-- Prikaz hrane -->
+<div class="form-container">
+    <h2>Hrana</h2>
+    <ul>
+        <li *ngFor="let hranaItem of hrana; let i = index">
+            {{ hranaItem }}
+            <button (click)="obrisiHranu(i)" class="button1" >Obriši</button>
+        </li>
+    </ul>
+</div>
+
+<!-- Prikaz pića -->
+<div class="form-container">
+    <h2>Piće</h2>
+    <ul>
+        <li *ngFor="let piceItem of pice; let i = index">
+            {{ piceItem }}
+            <button (click)="obrisiPice(i)" class="button1" >Obriši</button>
+        </li>
+    </ul>
+</div>
+
+<!-- Prikaz ostalih stavki -->
+<div class="form-container">
+    <h2>Ostalo</h2>
+    <ul>
+        <li *ngFor="let ostaloItem of ostalo; let i = index">
+            {{ ostaloItem }}
+            <button (click)="obrisiOstalo(i)" class="button1" >Obriši</button>
+        </li>
+    </ul>
+</div>
+<div class="form-container">
+    <h2>Pokloni</h2>
+    <ul>
+        <li *ngFor="let p of pokloni; let i = index">
+            {{ p }}
+            <button (click)="obrisiPoklon(i)" class="button1" >Obriši</button>
+        </li>
+    </ul>
+</div>
+    </div>
+        
+
+       
+       
+            
+
+        
+    </div>
+
+    
+
+    <footer style="background-color: #e4519a; color: white; text-align: center; padding: 10px; margin-top: 30px; width: 100%;">
+        <p><b>Telefon</b>: +38152364879</p>
+        <p><b>Email</b>: info@celebratesmart.com</p>
+        <!--<div id="map" style="height: 400px; width: 100%;"></div>-->
+
+          
+          
+    </footer>
+</div>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const user_controller_1 = require("../controllers/user.controller");
+const userRouter = express_1.default.Router();
+userRouter.route('/login').post((req, res) => new user_controller_1.UserController().login(req, res));
+userRouter.route('/register').post((req, res) => new user_controller_1.UserController().register(req, res));
+userRouter.route('/support').post((req, res) => new user_controller_1.UserController().support(req, res));
+userRouter.route('/dodajUslugu').post((req, res) => new user_controller_1.UserController().dodajUslugu(req, res));
+userRouter.route('/dohvatiKorisnika').post((req, res) => new user_controller_1.UserController().dohvatiKorisnika(req, res));
+userRouter.route('/dohvatiUsluge').post((req, res) => new user_controller_1.UserController().dohvatiUsluge(req, res));
+userRouter.route('/izmeniInformacije').post((req, res) => new user_controller_1.UserController().izmeniInformacije(req, res));
+userRouter.route('/dodajKalendar').post((req, res) => new user_controller_1.UserController().dodajKalendar(req, res));
+userRouter.route('/dohvatiKalendar').post((req, res) => new user_controller_1.UserController().dohvatiKalendar(req, res));
+userRouter.route('/dohvatiUslugu').post((req, res) => new user_controller_1.UserController().dohvatiUslugu(req, res));
+userRouter.route('/izmeniUslugu').post((req, res) => new user_controller_1.UserController().izmeniUslugu(req, res));
+userRouter.route('/dohvatiSveUsluge').post((req, res) => new user_controller_1.UserController().dohvatiSveUsluge(req, res));
+userRouter.route('/napraviDogadjaj').post((req, res) => new user_controller_1.UserController().napraviDogadjaj(req, res));
+userRouter.route('/mojiDogadjaji').post((req, res) => new user_controller_1.UserController().mojiDogadjaji(req, res));
+userRouter.route('/dolazak').post((req, res) => new user_controller_1.UserController().dolazak(req, res));
+userRouter.route('/potvrdiDolazak').post((req, res) => new user_controller_1.UserController().potvrdiDolazak(req, res));
+userRouter.route('/pozivnica').post((req, res) => new user_controller_1.UserController().posaljiPozivnicu(req, res));
+userRouter.route('/dolazim').post((req, res) => new user_controller_1.UserController().dolazim(req, res));
+userRouter.route('/gosti').post((req, res) => new user_controller_1.UserController().spisakGostiju(req, res));
+userRouter.route('/raspored').post((req, res) => new user_controller_1.UserController().raspored(req, res));
+userRouter.route('/dohvatiRaspored').post((req, res) => new user_controller_1.UserController().dohvatiRaspored(req, res));
+exports.default = userRouter;
+//# sourceMappingURL=user.routes.js.map
